@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Zodíaco Imperial | BaZi Master</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <nav class="top-bar">
+            <div class="brand">IMPERIAL <span class="gold">BAZI</span></div>
+            <a href="https://alexxanorafa.github.io/ecosystem/" class="eco-btn">ECOSYSTEM</a>
+        </nav>
+
+        <header class="hero-section">
+            <h1>Arquétipo & Destino</h1>
+            <p>Algoritmo de Precisão Lunar exato (1900-2040)</p>
+        </header>
+
+        <section class="control-panel glass">
+            <div class="input-group">
+                <div class="field-box">
+                    <label>TU (Data de Nascimento)</label>
+                    <input type="date" id="dateUser">
+                </div>
+                <div class="field-box">
+                    <label>PARCEIRO (Opcional)</label>
+                    <input type="date" id="datePartner">
+                </div>
+            </div>
+            <button onclick="revelarDestino()" class="btn-royal">ANÁLISE PROFUNDA</button>
+        </section>
+
+        <main id="results-area" class="results-grid hidden">
+            <article class="card-profile" onclick="abrirDetalhes('user')">
+                <div class="card-header">
+                    <span class="role-badge">PROTAGONISTA</span>
+                    <h2 id="u-sign">---</h2>
+                </div>
+                <div class="card-body">
+                    <div class="element-icon" id="u-elem-icon"></div>
+                    <p id="u-element" class="element-text">---</p>
+                    <p class="click-hint">Toque para ver a psique completa</p>
+                </div>
+            </article>
+
+            <article class="card-profile dimmed" id="card-partner" onclick="abrirDetalhes('partner')">
+                <div class="card-header">
+                    <span class="role-badge">CO-PROTAGONISTA</span>
+                    <h2 id="p-sign">---</h2>
+                </div>
+                <div class="card-body">
+                    <div class="element-icon" id="p-elem-icon"></div>
+                    <p id="p-element" class="element-text">---</p>
+                </div>
+            </article>
+
+            <div class="compatibility-bar">
+                <div class="progress-container">
+                    <div id="compat-fill" class="progress-fill"></div>
+                </div>
+                <div class="compat-info">
+                    <span id="compat-score">0%</span>
+                    <span id="compat-desc">Sincronia Energética</span>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div id="modal-overlay" class="modal-backdrop hidden">
+        <div class="modal-content glass">
+            <div class="modal-header">
+                <h2 id="m-title" class="gold-text">Título</h2>
+                <button class="close-btn" onclick="fecharModal()">×</button>
+            </div>
+            <div id="m-body" class="scroll-content">
+                </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
