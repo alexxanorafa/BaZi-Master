@@ -1,86 +1,71 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>BaZi Master</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <title>BaZi Master</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="app-container">
-        <nav class="top-bar">
-            <div class="brand">IMPERIAL <span class="gold">BAZI</span></div>
-            <a href="https://alexxanorafa.github.io/ecosystem/" class="eco-btn">ECOSYSTEM</a>
-        </nav>
+  <div class="app-shell">
+    <header class="main-header">
+      <div class="logo"><span class="gold">LUNAR</span> MATRIX</div>
+      <span class="disclaimer">
+        Baseado em calendário chinês tradicional. Cálculo de datas é objetivo; descrições são interpretativas.
+      </span>
+    </header>
 
-        <header class="hero-section">
-            <h1>Arquétipo & Destino</h1>
-            <p>Algoritmo de Precisão Lunar exato (1900-2040)</p>
-        </header>
-
-        <section class="control-panel glass">
-            <div class="input-group">
-                <div class="field-box">
-                    <label>TU (Data de Nascimento)</label>
-                    <input type="date" id="dateUser">
-                </div>
-                <div class="field-box">
-                    <label>PARCEIRO (Opcional)</label>
-                    <input type="date" id="datePartner">
-                </div>
-            </div>
-            <button onclick="revelarDestino()" class="btn-royal">ANÁLISE PROFUNDA</button>
-        </section>
-
-        <main id="results-area" class="results-grid hidden">
-            <article class="card-profile" onclick="abrirDetalhes('user')">
-                <div class="card-header">
-                    <span class="role-badge">PROTAGONISTA</span>
-                    <h2 id="u-sign">---</h2>
-                </div>
-                <div class="card-body">
-                    <div class="element-icon" id="u-elem-icon"></div>
-                    <p id="u-element" class="element-text">---</p>
-                    <p class="click-hint">Toque para ver a psique completa</p>
-                </div>
-            </article>
-
-            <article class="card-profile dimmed" id="card-partner" onclick="abrirDetalhes('partner')">
-                <div class="card-header">
-                    <span class="role-badge">CO-PROTAGONISTA</span>
-                    <h2 id="p-sign">---</h2>
-                </div>
-                <div class="card-body">
-                    <div class="element-icon" id="p-elem-icon"></div>
-                    <p id="p-element" class="element-text">---</p>
-                </div>
-            </article>
-
-            <div class="compatibility-bar">
-                <div class="progress-container">
-                    <div id="compat-fill" class="progress-fill"></div>
-                </div>
-                <div class="compat-info">
-                    <span id="compat-score">0%</span>
-                    <span id="compat-desc">Sincronia Energética</span>
-                </div>
-            </div>
-        </main>
-    </div>
-
-    <div id="modal-overlay" class="modal-backdrop hidden">
-        <div class="modal-content glass">
-            <div class="modal-header">
-                <h2 id="m-title" class="gold-text">Título</h2>
-                <button class="close-btn" onclick="fecharModal()">×</button>
-            </div>
-            <div id="m-body" class="scroll-content">
-                </div>
+    <section class="glass">
+      <div class="input-row">
+        <div>
+          <label for="date1">DATA SUJEITO A</label>
+          <input type="date" id="date1">
         </div>
-    </div>
+        <div>
+          <label for="date2">DATA SUJEITO B (OPCIONAL)</label>
+          <input type="date" id="date2">
+        </div>
+      </div>
+      <button class="btn-primary" onclick="runSystem()">CALCULAR PERFIS</button>
+    </section>
 
-    <script src="script.js"></script>
+    <section class="glass results-grid">
+      <article id="card-u1" class="card-ba dimmed">
+        <small>SUJEITO A</small>
+        <h3>Perfil à espera…</h3>
+        <p>Introduce uma data para ver o perfil segundo o zodíaco chinês.</p>
+      </article>
+
+      <aside class="glass synergy-module">
+        <div class="score-circle">
+          <svg width="90" height="90" viewBox="0 0 90 90">
+            <circle class="circle-bg" cx="45" cy="45" r="35"></circle>
+            <circle class="circle" cx="45" cy="45" r="35" stroke-dasharray="0 220"></circle>
+          </svg>
+          <div id="score-val">–</div>
+        </div>
+        <div id="synergy-label">Aguarda segunda data…</div>
+      </aside>
+
+      <article id="card-u2" class="card-ba dimmed">
+        <small>SUJEITO B</small>
+        <h3>Perfil opcional…</h3>
+        <p>Se adicionares uma segunda data, também calculamos compatibilidade.</p>
+      </article>
+    </section>
+
+    <section class="glass insight-panel">
+      <h4>NOTA SOBRE RIGOR</h4>
+      <p id="insight-text">
+        O cálculo do ano efetivo segue o Ano Novo Lunar. As descrições de personalidade são leituras simbólicas baseadas em tradição, não avaliações científicas de traços.
+      </p>
+    </section>
+  </div>
+
+  <script src="script.js"></script>
 </body>
-
 </html>
