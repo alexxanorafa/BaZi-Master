@@ -48,7 +48,7 @@ body {
 .logo {
   font-weight: 700;
   letter-spacing: 2px;
-  font-size: 1.2rem;
+  font-size: 1.0rem;
 }
 
 .gold {
@@ -139,7 +139,7 @@ input {
 }
 
 .card-ba h3 {
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   letter-spacing: 1px;
   margin-bottom: 2px;
 }
@@ -152,7 +152,7 @@ input {
 
 /* Labels internos do card */
 .card-label {
-  font-size: 0.7rem;
+  font-size: 0.6rem;
   text-transform: uppercase;
   letter-spacing: 0.5px;
   color: #888;
@@ -160,7 +160,7 @@ input {
 }
 
 .card-text {
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   color: #ddd;
 }
 
@@ -204,7 +204,7 @@ input {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   font-weight: bold;
 }
 
@@ -230,7 +230,7 @@ input {
 
 /* Insight – baixo, altura controlada */
 .insight-panel {
-  font-size: 0.85rem;
+  font-size: 0.80rem;
   line-height: 1.6;
   max-height: 120px;             /* altura fixa em baixo */
   overflow-y: auto;              /* scroll interno se o texto for maior */
@@ -239,7 +239,7 @@ input {
 .insight-panel h4 {
   color: var(--gold);
   margin-bottom: 6px;
-  font-size: 0.75rem;
+  font-size: 0.70rem;
   text-transform: uppercase;
 }
 
