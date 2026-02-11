@@ -1,6 +1,6 @@
 /**
  * EFEMÉRIDES LUNARES (aproximação com alguns anos mapeados)
- * NOTA: Para rigor máximo, amplia este mapa com dados oficiais de Ano Novo Chinês.
+ * Para rigor máximo, amplia este mapa com dados oficiais de Ano Novo Chinês.
  */
 const LUNAR_MAP = {
   1975: "02-11",
@@ -15,33 +15,32 @@ const LUNAR_MAP = {
   1984: "02-02",
   1985: "02-20",
   1986: "02-09",
-  1996: "02-19", // Ano Novo Chinês 1996 [web:12]
+  1996: "02-19", // Ano Novo Chinês 1996
   2024: "02-10",
   2025: "01-29",
   2026: "02-17"
 };
 
 /**
- * ORDEM CORRETA DOS 12 ANIMAIS ALINHADA COM MÓDULO 12
- * Base: 1900 = Rato, e o ciclo repete de 12 em 12 anos. [web:7][web:18]
+ * Ordem dos 12 animais. Referência: 1900 = Rato.
  */
 const ANIMALS = [
-  "Rato",   // 0
-  "Boi",    // 1
-  "Tigre",  // 2
-  "Coelho", // 3
-  "Dragão", // 4
-  "Serpente", // 5
-  "Cavalo", // 6
-  "Cabra",  // 7
-  "Macaco", // 8
-  "Galo",   // 9
-  "Cão",    // 10
-  "Porco"   // 11
+  "Rato",
+  "Boi",
+  "Tigre",
+  "Coelho",
+  "Dragão",
+  "Serpente",
+  "Cavalo",
+  "Cabra",
+  "Macaco",
+  "Galo",
+  "Cão",
+  "Porco"
 ];
 
 /**
- * Elemento segundo último dígito do ano efetivo (troncos celestes).
+ * Elementos pelo último dígito do ano efetivo.
  * 0-1 Metal, 2-3 Água, 4-5 Madeira, 6-7 Fogo, 8-9 Terra.
  */
 const ELEMENTS = [
@@ -53,63 +52,111 @@ const ELEMENTS = [
 ];
 
 /**
- * Descrições interpretativas por ANIMAL (não por elemento).
- * Aqui mantemos o foco em tendências culturais, não em afirmações científicas.
+ * Perfis arquetípicos por animal.
+ * Linguagem interpretativa, não clínica.
  */
 const ANIMAL_PROFILES = {
   Rato: {
-    psy: "Tendência para análise rápida, adaptação a contextos difíceis e atenção a recursos.",
-    tip: "Organiza hoje pelo menos uma área prática da tua vida (finanças, tempo, ou espaço)."
+    essence: "Mente estratégica orientada para antecipar riscos e oportunidades.",
+    strength: "Capacidade de adaptação rápida e leitura do ambiente.",
+    shadow: "Ansiedade, excesso de vigilância e dificuldade em delegar.",
+    skills: "Gestão de recursos, análise, improviso sob pressão.",
+    challenge: "Confiar mais e controlar menos.",
+    tip: "Transforma uma preocupação recorrente num plano simples de três passos."
   },
   Boi: {
-    psy: "Preferência por estabilidade, consistência e trabalho de longo prazo.",
-    tip: "Avança um pequeno passo num projeto que tens vindo a adiar."
+    essence: "Estabilidade, paciência e foco em progresso consistente.",
+    strength: "Construção de estruturas duradouras.",
+    shadow: "Rigidez, teimosia e resistência à mudança.",
+    skills: "Disciplina, fiabilidade, execução metódica.",
+    challenge: "Flexibilizar sem perder solidez.",
+    tip: "Dá hoje um pequeno avanço num projeto que exige disciplina."
   },
   Tigre: {
-    psy: "Impulso para liderar, arriscar e desafiar o status quo.",
-    tip: "Dá espaço a um ponto de vista diferente antes de reagires."
+    essence: "Coragem, intensidade e impulso para liderar.",
+    strength: "Capacidade de romper bloqueios e iniciar movimento.",
+    shadow: "Impulsividade e confrontos desnecessários.",
+    skills: "Iniciativa, liderança, energia mobilizadora.",
+    challenge: "Canalizar força sem atropelar.",
+    tip: "Antes de agir, identifica a intenção real por trás do impulso."
   },
   Coelho: {
-    psy: "Foco em harmonia, diplomacia e ambientes agradáveis.",
-    tip: "Protege um bloco de tempo só para descanso mental."
+    essence: "Sensibilidade, diplomacia e busca de harmonia.",
+    strength: "Criação de ambientes seguros e relações equilibradas.",
+    shadow: "Evitar conflitos e sacrificar-se para manter paz.",
+    skills: "Mediação, estética emocional, empatia.",
+    challenge: "Estabelecer limites claros.",
+    tip: "Define um limite suave mas firme numa relação ou situação."
   },
   Dragão: {
-    psy: "Tendência para visão ampla, ambição e presença marcante.",
-    tip: "Revê um detalhe importante num plano em andamento."
+    essence: "Visão ampla, ambição e presença marcante.",
+    strength: "Capacidade de inspirar e liderar grandes movimentos.",
+    shadow: "Arrogância, dispersão e excesso de confiança.",
+    skills: "Visão estratégica, magnetismo, criatividade expansiva.",
+    challenge: "Cuidar dos detalhes que sustentam a visão.",
+    tip: "Revê um detalhe crítico num plano ambicioso."
   },
   Serpente: {
-    psy: "Análise profunda, reserva emocional e planeamento a longo prazo.",
-    tip: "Confia numa intuição específica e testa-a de forma concreta."
+    essence: "Profundidade, intuição e pensamento analítico.",
+    strength: "Ver camadas ocultas e ligar pontos.",
+    shadow: "Isolamento, excesso de cálculo e desconfiança.",
+    skills: "Estratégia, investigação, leitura emocional.",
+    challenge: "Abrir-se ao diálogo antes de decidir.",
+    tip: "Escolhe uma intuição e valida-a com um experimento concreto."
   },
   Cavalo: {
-    psy: "Preferência por movimento, independência e experiências variadas.",
-    tip: "Escolhe uma só prioridade e leva-a até ao fim do dia."
+    essence: "Liberdade, movimento e entusiasmo.",
+    strength: "Avançar quando todos estagnam.",
+    shadow: "Dispersão e fuga de compromissos.",
+    skills: "Exploração, energia, adaptabilidade.",
+    challenge: "Sustentar foco até ao fim.",
+    tip: "Define uma única prioridade e leva-a até ao fim."
   },
   Cabra: {
-    psy: "Sensibilidade estética, empatia e criatividade em contextos desafiantes.",
-    tip: "Usa um gesto criativo para resolver uma fricção prática."
+    essence: "Imaginação, sensibilidade e criatividade.",
+    strength: "Transformar caos em beleza e sentido.",
+    shadow: "Dramatização e insegurança.",
+    skills: "Criação, empatia, expressão estética.",
+    challenge: "Assumir responsabilidade emocional.",
+    tip: "Usa criatividade para resolver um problema prático."
   },
   Macaco: {
-    psy: "Tendência para pensamento rápido, improvisação e desmontar sistemas.",
-    tip: "Simplifica uma solução em vez de adicionar mais camadas."
+    essence: "Improviso, humor e inteligência lateral.",
+    strength: "Encontrar soluções inesperadas.",
+    shadow: "Dispersão e manipulação subtil.",
+    skills: "Inovação, hacking mental, resolução criativa.",
+    challenge: "Sustentar processos até ao fim.",
+    tip: "Simplifica um processo que tens tornado demasiado complexo."
   },
   Galo: {
-    psy: "Gosto por detalhe, ordem e comunicação direta.",
-    tip: "Aceita que nem todos seguem o teu ritmo de precisão."
+    essence: "Precisão, ordem e comunicação direta.",
+    strength: "Organizar, estruturar e clarificar.",
+    shadow: "Perfeccionismo e crítica excessiva.",
+    skills: "Gestão, detalhe, disciplina.",
+    challenge: "Aceitar imperfeição funcional.",
+    tip: "Opta por 'bom o suficiente' em vez de 'perfeito e atrasado'."
   },
   Cão: {
-    psy: "Forte sentido de justiça, lealdade e proteção do grupo.",
-    tip: "Verifica se estás a assumir responsabilidades que não são tuas."
+    essence: "Lealdade, ética e proteção.",
+    strength: "Criar confiança e segurança.",
+    shadow: "Assumir responsabilidades alheias.",
+    skills: "Justiça, apoio, consistência.",
+    challenge: "Distinguir cuidado de sobrecarga.",
+    tip: "Devolve uma responsabilidade que não é tua."
   },
   Porco: {
-    psy: "Enfoque em conforto, bem-estar e relações de confiança.",
-    tip: "Recusa um compromisso que não acrescenta verdadeiro valor."
+    essence: "Conforto, prazer e generosidade.",
+    strength: "Criar ambientes nutritivos e relações de confiança.",
+    shadow: "Indulgência e evitar desconforto.",
+    skills: "Hospitalidade, diplomacia suave, estabilidade emocional.",
+    challenge: "Enfrentar desconfortos necessários.",
+    tip: "Diz não a algo que drena a tua energia."
   }
 };
 
 /**
- * Calcula Ano efetivo, ANIMAL e elemento.
- * Referência: 1900 é ano de Rato. [web:7][web:18]
+ * Calcula Ano efetivo, animal e elemento.
+ * Referência: 1900 = Rato.
  */
 function calculateSign(dateStr) {
   if (!dateStr) return null;
@@ -123,18 +170,16 @@ function calculateSign(dateStr) {
 
   let effectiveYear = year;
 
-  const lunarStart = LUNAR_MAP[year] || `${year}-02-05`; // fallback aproximado
+  const lunarStart = LUNAR_MAP[year] || `${year}-02-05`;
   const [lM, lD] = lunarStart.split("-").map(Number);
 
   if (month < lM || (month === lM && day < lD)) {
     effectiveYear--;
   }
 
-  // Animal: 1900 = Rato (índice 0)
   const animalIndex = mod(effectiveYear - 1900, 12);
   const animal = ANIMALS[animalIndex];
 
-  // Elemento pelo último dígito
   const elemIdx = parseInt(effectiveYear.toString().slice(-1), 10);
   const element = ELEMENTS[elemIdx];
 
@@ -144,14 +189,17 @@ function calculateSign(dateStr) {
     animal,
     element,
     year: effectiveYear,
-    psy: profile ? profile.psy : "",
-    tip: profile ? profile.tip : ""
+    essence: profile?.essence || "",
+    strength: profile?.strength || "",
+    shadow: profile?.shadow || "",
+    skills: profile?.skills || "",
+    challenge: profile?.challenge || "",
+    tip: profile?.tip || ""
   };
 }
 
 /**
  * Compatibilidade: ciclo dos 5 elementos + tríades tradicionais.
- * Modelo interpretativo transparente.
  */
 function computeSynergyScore(s1, s2) {
   if (!s1 || !s2) return null;
@@ -164,9 +212,9 @@ function computeSynergyScore(s1, s2) {
 
   if (i1 !== -1 && i2 !== -1) {
     const diff = Math.min(Math.abs(i1 - i2), 5 - Math.abs(i1 - i2));
-    if (diff === 0) base = 88;       // mesmo elemento
-    else if (diff === 1) base = 80;  // gera/é gerado
-    else if (diff === 2) base = 60;  // relação mais tensa
+    if (diff === 0) base = 88;
+    else if (diff === 1) base = 80;
+    else if (diff === 2) base = 60;
   }
 
   const triads = [
@@ -186,6 +234,35 @@ function computeSynergyScore(s1, s2) {
   return clamp(base, 30, 100);
 }
 
+/**
+ * Texto de insight combinando força/sombra dos dois.
+ */
+function buildPairSummary(s1, s2, score) {
+  if (!s2 || !score) {
+    return "Com uma segunda data, é gerado um resumo das forças, desafios e compatibilidade entre os dois perfis.";
+  }
+
+  const a1 = s1.animal;
+  const a2 = s2.animal;
+
+  let baseLine = `A combinação entre ${a1} e ${a2} mostra `;
+
+  if (score >= 86) {
+    baseLine += "um potencial elevado de colaboração estável e de longo prazo.";
+  } else if (score >= 70) {
+    baseLine += "boas condições para cooperação com alguns ajustes de estilo.";
+  } else if (score >= 50) {
+    baseLine += "diferenças relevantes que podem ser produtivas se forem faladas abertamente.";
+  } else {
+    baseLine += "bastante tensão potencial, pedindo acordos claros e limites bem definidos.";
+  }
+
+  const focusLine = ` Em geral, ${a1} traz mais "${s1.strength.toLowerCase()}" enquanto ${a2} tende a contribuir com "${s2.strength.toLowerCase()}".`;
+  const cautionLine = ` Atenção a pontos de sombra: ${a1} pode resvalar para "${s1.shadow.toLowerCase()}", e ${a2} para "${s2.shadow.toLowerCase()}".`;
+
+  return baseLine + focusLine + cautionLine;
+}
+
 function normalizeElement(el) {
   if (!el) return "";
   return el.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
@@ -199,6 +276,9 @@ function clamp(value, min, max) {
   return Math.min(max, Math.max(min, value));
 }
 
+/**
+ * UI – Sinergia
+ */
 function updateSynergyUI(score, s1, s2) {
   const circle = document.querySelector(".circle");
   const scoreVal = document.getElementById("score-val");
@@ -209,7 +289,7 @@ function updateSynergyUI(score, s1, s2) {
     circle.style.strokeDasharray = `0 220`;
     scoreVal.textContent = "–";
     label.textContent = "Aguarda segunda data…";
-    insight.textContent = "Com uma segunda data, é calculada uma compatibilidade baseada em elementos e grupos tradicionais do zodíaco chinês.";
+    insight.textContent = "Com uma segunda data, calculamos compatibilidade por elementos e grupos tradicionais, e sintetizamos forças e desafios do par.";
     return;
   }
 
@@ -220,23 +300,17 @@ function updateSynergyUI(score, s1, s2) {
   scoreVal.textContent = `${score}%`;
 
   let labelText = "Zona de fricção";
-  let insightText = `Diferenças marcadas entre ${s1.animal} e ${s2.animal}. Podem ser úteis se forem discutidas de forma aberta.`;
-
-  if (score >= 86) {
-    labelText = "Alto potencial";
-    insightText = `Tradições apontam forte afinidade entre ${s1.animal} e ${s2.animal}. Base sólida para cooperação consistente.`;
-  } else if (score >= 70) {
-    labelText = "Compatibilidade estável";
-    insightText = `A combinação entre ${s1.animal} e ${s2.animal} tende a ser equilibrada, com boa margem de entendimento mútuo.`;
-  } else if (score >= 50) {
-    labelText = "Fricção moderada";
-    insightText = `O encontro entre ${s1.animal} e ${s2.animal} pode gerar tensão, mas também aprendizagem se houver limites claros.`;
-  }
+  if (score >= 86) labelText = "Alto potencial";
+  else if (score >= 70) labelText = "Compatibilidade estável";
+  else if (score >= 50) labelText = "Fricção moderada";
 
   label.textContent = labelText;
-  insight.textContent = insightText;
+  insight.textContent = buildPairSummary(s1, s2, score);
 }
 
+/**
+ * UI – Cards
+ */
 function renderCard(elementId, signData, label) {
   const card = document.getElementById(elementId);
 
@@ -254,12 +328,33 @@ function renderCard(elementId, signData, label) {
   card.innerHTML = `
     <small>${label}</small>
     <h3>${signData.animal} · ${signData.element}</h3>
-    <p>${signData.psy}</p>
-    <p style="margin-top:6px; color:#999; font-size:0.75rem;">Sugestão do dia: ${signData.tip}</p>
-    <p style="margin-top:4px; color:#666; font-size:0.7rem;">Ano efetivo no ciclo: ${signData.year}</p>
+
+    <div class="card-label">Essência</div>
+    <div class="card-text">${signData.essence}</div>
+
+    <div class="card-label">Força</div>
+    <div class="card-text">${signData.strength}</div>
+
+    <div class="card-label">Sombra</div>
+    <div class="card-text">${signData.shadow}</div>
+
+    <div class="card-label">Competências</div>
+    <div class="card-text">${signData.skills}</div>
+
+    <div class="card-label">Desafio atual</div>
+    <div class="card-text">${signData.challenge}</div>
+
+    <div class="card-label">Sugestão do dia</div>
+    <div class="card-text">${signData.tip}</div>
+
+    <div class="card-label">Ano efetivo no ciclo</div>
+    <div class="card-text">${signData.year}</div>
   `;
 }
 
+/**
+ * Sistema principal
+ */
 function runSystem() {
   const s1 = calculateSign(document.getElementById("date1").value);
   const s2 = calculateSign(document.getElementById("date2").value);

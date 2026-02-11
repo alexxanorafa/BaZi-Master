@@ -46,7 +46,7 @@ body {
 .logo {
   font-weight: 700;
   letter-spacing: 2px;
-  font-size: 1.2rem;
+  font-size: 1.0rem;
 }
 
 .gold {
@@ -126,11 +126,11 @@ input {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  gap: 6px;
+  gap: 4px;
 }
 
 .card-ba h3 {
-  font-size: 0.95rem;
+  font-size: 0.8rem;
   letter-spacing: 1px;
   margin-bottom: 2px;
 }
@@ -139,6 +139,21 @@ input {
   color: #777;
   font-size: 0.6rem;
   text-transform: uppercase;
+}
+
+/* Labels internos do card */
+
+.card-label {
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #888;
+  margin-top: 4px;
+}
+
+.card-text {
+  font-size: 0.6rem;
+  color: #ddd;
 }
 
 /* Cores por Elemento */
@@ -186,7 +201,7 @@ input {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   font-weight: bold;
 }
 
@@ -216,14 +231,14 @@ input {
   margin-top: 10px;
   flex: 1;
   overflow-y: auto;
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   line-height: 1.6;
 }
 
 .insight-panel h4 {
   color: var(--gold);
   margin-bottom: 8px;
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   text-transform: uppercase;
 }
 
