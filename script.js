@@ -15,7 +15,7 @@ const LUNAR_MAP = {
   1984: "02-02",
   1985: "02-20",
   1986: "02-09",
-  1996: "02-19", // Ano Novo Chinês 1996
+  1996: "02-19",
   2024: "02-10",
   2025: "01-29",
   2026: "02-17"
@@ -41,7 +41,6 @@ const ANIMALS = [
 
 /**
  * Elementos pelo último dígito do ano efetivo.
- * 0-1 Metal, 2-3 Água, 4-5 Madeira, 6-7 Fogo, 8-9 Terra.
  */
 const ELEMENTS = [
   "Metal", "Metal",
@@ -52,8 +51,7 @@ const ELEMENTS = [
 ];
 
 /**
- * Perfis arquetípicos por animal.
- * Linguagem interpretativa, não clínica.
+ * Perfis arquetípicos por animal (interpretação, não clínica).
  */
 const ANIMAL_PROFILES = {
   Rato: {
@@ -155,8 +153,7 @@ const ANIMAL_PROFILES = {
 };
 
 /**
- * Calcula Ano efetivo, animal e elemento.
- * Referência: 1900 = Rato.
+ * Calcula ano efetivo, animal e elemento.
  */
 function calculateSign(dateStr) {
   if (!dateStr) return null;
@@ -235,7 +232,7 @@ function computeSynergyScore(s1, s2) {
 }
 
 /**
- * Texto de insight combinando força/sombra dos dois.
+ * Síntese textual do par.
  */
 function buildPairSummary(s1, s2, score) {
   if (!s2 || !score) {
@@ -257,8 +254,8 @@ function buildPairSummary(s1, s2, score) {
     baseLine += "bastante tensão potencial, pedindo acordos claros e limites bem definidos.";
   }
 
-  const focusLine = ` Em geral, ${a1} traz mais "${s1.strength.toLowerCase()}" enquanto ${a2} tende a contribuir com "${s2.strength.toLowerCase()}".`;
-  const cautionLine = ` Atenção a pontos de sombra: ${a1} pode resvalar para "${s1.shadow.toLowerCase()}", e ${a2} para "${s2.shadow.toLowerCase()}".`;
+  const focusLine = ` Em geral, ${a1} tende a trazer mais "${s1.strength.toLowerCase()}" enquanto ${a2} contribui com "${s2.strength.toLowerCase()}".`;
+  const cautionLine = ` Pontos de atenção: ${a1} pode resvalar para "${s1.shadow.toLowerCase()}", e ${a2} para "${s2.shadow.toLowerCase()}".`;
 
   return baseLine + focusLine + cautionLine;
 }

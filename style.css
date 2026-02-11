@@ -23,17 +23,19 @@ body {
   color: var(--text);
   font-family: 'Space Grotesk', sans-serif;
   height: 100vh;
-  overflow: hidden;
+  margin: 0;
+  overflow: hidden;              /* sem scroll global */
 }
 
+/* App ocupa o viewport todo e organiza as zonas em grelha vertical */
 .app-shell {
   max-width: 720px;
   margin: 0 auto;
-  padding: 20px;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+  padding: 16px 20px 20px;
+  height: 100vh;                 /* ocupa o viewport */
+  display: grid;
+  grid-template-rows: auto auto 1fr auto; /* header / inputs / resultados / insight */
+  gap: 16px;
 }
 
 .main-header {
@@ -46,7 +48,7 @@ body {
 .logo {
   font-weight: 700;
   letter-spacing: 2px;
-  font-size: 1.0rem;
+  font-size: 1.2rem;
 }
 
 .gold {
@@ -64,14 +66,20 @@ body {
   background: var(--panel);
   border: 1px solid #222;
   border-radius: 6px;
-  padding: 20px;
+  padding: 16px 16px 18px;
+}
+
+/* Secção de inputs mais compacta */
+.input-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
 .input-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 15px;
-  margin-bottom: 15px;
+  gap: 12px;
 }
 
 label {
@@ -87,7 +95,7 @@ input {
   background: #000;
   border: 1px solid #333;
   color: var(--accent);
-  padding: 10px;
+  padding: 8px;
   font-family: 'JetBrains Mono', monospace;
 }
 
@@ -95,7 +103,7 @@ input {
   width: 100%;
   background: var(--gold);
   border: none;
-  padding: 15px;
+  padding: 12px;
   font-weight: 700;
   letter-spacing: 2px;
   cursor: pointer;
@@ -107,30 +115,31 @@ input {
   box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
 }
 
-/* Grid & Cards */
-
+/* Grid & Cards – ocupa a zona flexível central */
 .results-grid {
   display: grid;
   grid-template-columns: 1fr 120px 1fr;
   gap: 10px;
   align-items: stretch;
-  margin-top: 10px;
+  min-height: 0;                 /* permite encolher dentro do grid */
 }
 
 .card-ba {
   background: #000;
   border: 1px solid #222;
-  padding: 15px;
+  padding: 12px;
   border-top: 3px solid #333;
   text-align: left;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
   gap: 4px;
+  min-height: 0;
+  max-height: 100%;              /* limita à altura da célula */
+  overflow-y: auto;              /* scroll interno */
 }
 
 .card-ba h3 {
-  font-size: 0.8rem;
+  font-size: 0.95rem;
   letter-spacing: 1px;
   margin-bottom: 2px;
 }
@@ -142,9 +151,8 @@ input {
 }
 
 /* Labels internos do card */
-
 .card-label {
-  font-size: 0.6rem;
+  font-size: 0.7rem;
   text-transform: uppercase;
   letter-spacing: 0.5px;
   color: #888;
@@ -152,12 +160,11 @@ input {
 }
 
 .card-text {
-  font-size: 0.6rem;
+  font-size: 0.8rem;
   color: #ddd;
 }
 
 /* Cores por Elemento */
-
 .card-ba.Fogo {
   border-top-color: var(--fire);
 }
@@ -179,14 +186,10 @@ input {
 }
 
 /* Sinergia Circular */
-
 .synergy-module {
-  text-align: center;
-  padding: 12px !important;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 4px;
+  min-height: 0;
+  max-height: 100%;
+  overflow: hidden;              /* sem scroll, conteúdo é compacto */
 }
 
 .score-circle {
@@ -201,7 +204,7 @@ input {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   font-weight: bold;
 }
 
@@ -225,20 +228,18 @@ input {
   margin-top: 5px;
 }
 
-/* Insight */
-
+/* Insight – baixo, altura controlada */
 .insight-panel {
-  margin-top: 10px;
-  flex: 1;
-  overflow-y: auto;
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   line-height: 1.6;
+  max-height: 120px;             /* altura fixa em baixo */
+  overflow-y: auto;              /* scroll interno se o texto for maior */
 }
 
 .insight-panel h4 {
   color: var(--gold);
-  margin-bottom: 8px;
-  font-size: 0.7rem;
+  margin-bottom: 6px;
+  font-size: 0.75rem;
   text-transform: uppercase;
 }
 
@@ -252,8 +253,12 @@ input {
 }
 
 /* Responsivo */
-
 @media (max-width: 600px) {
+  .app-shell {
+    grid-template-rows: auto auto 1fr auto;
+    padding: 12px 14px 14px;
+  }
+
   .results-grid {
     grid-template-columns: 1fr;
   }
