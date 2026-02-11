@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>BaZi Master</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
@@ -11,9 +11,10 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <nav>
-        <a href="https://alexxanorafa.github.io/ecosystem/" class="home-btn">ECOSYSTEM</a>
-    </nav>
+  <nav>
+    <a href="https://alexxanorafa.github.io/ecosystem/" class="home-btn">ECOSYSTEM</a>
+  </nav>
+
   <div class="app-shell">
     <header class="main-header">
       <div class="logo"><span class="gold">BaZi</span>Master</div>
@@ -24,48 +25,103 @@
 
     <section class="glass input-section">
       <div class="input-row">
-        <div>
-          <label for="date1">DATA SUJEITO A</label>
-          <input type="date" id="date1">
+        <div class="input-group">
+          <label for="date1">DATA SUJEITO A <span class="tooltip" data-tooltip="Data de nascimento no formato local">ⓘ</span></label>
+          <input 
+            type="date" 
+            id="date1" 
+            aria-label="Data de nascimento do Sujeito A"
+            min="1900-01-01"
+            max="2030-12-31"
+          >
+          <span class="error-msg" id="error-date1"></span>
         </div>
-        <div>
-          <label for="date2">DATA SUJEITO B (OPCIONAL)</label>
-          <input type="date" id="date2">
+        <div class="input-group">
+          <label for="date2">DATA SUJEITO B <span class="optional">(opcional)</span></label>
+          <input 
+            type="date" 
+            id="date2" 
+            aria-label="Data de nascimento do Sujeito B (opcional)"
+            min="1900-01-01"
+            max="2030-12-31"
+          >
+          <span class="error-msg" id="error-date2"></span>
         </div>
       </div>
-      <button class="btn-primary" onclick="runSystem()">CALCULAR PERFIS</button>
+      <button class="btn-primary" id="calc-btn" onclick="runSystem()">
+        <span class="btn-text">CALCULAR PERFIS</span>
+        <span class="btn-spinner hidden">
+          <svg width="16" height="16" viewBox="0 0 16 16">
+            <circle cx="8" cy="8" r="6" fill="none" stroke="currentColor" stroke-width="2" stroke-dasharray="20 10" opacity="0.3"/>
+            <circle cx="8" cy="8" r="6" fill="none" stroke="currentColor" stroke-width="2" stroke-dasharray="10 20">
+              <animateTransform attributeName="transform" type="rotate" from="0 8 8" to="360 8 8" dur="1s" repeatCount="indefinite"/>
+            </circle>
+          </svg>
+        </span>
+      </button>
     </section>
 
     <section class="glass results-grid">
-      <article id="card-u1" class="card-ba dimmed">
-        <small>SUJEITO A</small>
-        <h3>Perfil à espera…</h3>
-        <p>Introduce uma data para ver o perfil segundo o zodíaco chinês.</p>
+      <article id="card-u1" class="card-ba waiting" aria-live="polite">
+        <div class="waiting-content">
+          <svg class="waiting-icon" width="48" height="48" viewBox="0 0 48 48" fill="none">
+            <circle cx="24" cy="24" r="20" stroke="#444" stroke-width="2" stroke-dasharray="4 4"/>
+            <path d="M24 14v10l7 7" stroke="#666" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          <small>SUJEITO A</small>
+          <h3>À espera de input…</h3>
+          <p>Introduza uma data para ver o perfil segundo o zodíaco chinês.</p>
+        </div>
       </article>
 
-      <aside class="glass synergy-module">
-        <div class="score-circle">
-          <svg width="90" height="90" viewBox="0 0 90 90">
-            <circle class="circle-bg" cx="45" cy="45" r="35"></circle>
-            <circle class="circle" cx="45" cy="45" r="35" stroke-dasharray="0 220"></circle>
+      <aside class="glass synergy-module" aria-live="polite">
+        <div class="score-circle" role="img" aria-label="Círculo de compatibilidade">
+          <svg width="120" height="120" viewBox="0 0 120 120">
+            <circle class="circle-bg" cx="60" cy="60" r="50"></circle>
+            <circle class="circle" cx="60" cy="60" r="50" stroke-dasharray="0 314"></circle>
           </svg>
-          <div id="score-val">–</div>
+          <div id="score-val" aria-live="polite">–</div>
         </div>
-        <div id="synergy-label">Aguarda segunda data…</div>
+        <div id="synergy-label">Aguarda cálculo…</div>
       </aside>
 
-      <article id="card-u2" class="card-ba dimmed">
-        <small>SUJEITO B</small>
-        <h3>Perfil opcional…</h3>
-        <p>Se adicionares uma segunda data, também calculamos compatibilidade.</p>
+      <article id="card-u2" class="card-ba waiting" aria-live="polite">
+        <div class="waiting-content">
+          <svg class="waiting-icon" width="48" height="48" viewBox="0 0 48 48" fill="none">
+            <circle cx="24" cy="24" r="20" stroke="#444" stroke-width="2" stroke-dasharray="4 4"/>
+            <path d="M18 24h12M24 18v12" stroke="#666" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          <small>SUJEITO B</small>
+          <h3>Perfil opcional…</h3>
+          <p>Se adicionar uma segunda data, também calculamos compatibilidade.</p>
+        </div>
       </article>
     </section>
 
     <section class="glass insight-panel">
-      <h4>INSIGHT DO PAR</h4>
+      <div class="insight-header">
+        <h4>INSIGHT DO PAR</h4>
+        <button class="view-toggle" id="view-toggle" onclick="toggleViewMode()" title="Alternar modo de visualização">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+            <rect x="2" y="2" width="5" height="5" rx="1"/>
+            <rect x="9" y="2" width="5" height="5" rx="1"/>
+            <rect x="2" y="9" width="5" height="5" rx="1"/>
+            <rect x="9" y="9" width="5" height="5" rx="1"/>
+          </svg>
+          <span id="view-label">Modo compacto</span>
+        </button>
+      </div>
       <p id="insight-text">
-        Introduz uma ou duas datas para gerar perfis e uma leitura de compatibilidade baseada em elementos e grupos tradicionais do zodíaco chinês.
+        Introduza uma ou duas datas para gerar perfis e uma leitura de compatibilidade baseada em elementos e grupos tradicionais do zodíaco chinês.
       </p>
+    </section>
+
+    <section class="glass history-panel" id="history-panel">
+      <h4>HISTÓRICO <span class="history-count" id="history-count">(0)</span></h4>
+      <div class="history-list" id="history-list">
+        <p class="history-empty">Nenhum cálculo recente</p>
+      </div>
+      <button class="clear-history" onclick="clearHistory()" title="Limpar histórico">Limpar</button>
     </section>
   </div>
 
